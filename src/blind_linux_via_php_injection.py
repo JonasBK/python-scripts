@@ -2,6 +2,26 @@
 Created on Aug 22, 2018
 
 source: https://www.abatchy.com/2016/11/natas-level-16
+
+source code for web page:
+<pre>
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    if(preg_match('/[;|&`\'"]/',$key)) {
+        print "Input contains an illegal character!";
+    } else {
+        passthru("grep -i \"$key\" dictionary.txt");
+    }
+}
+?>
+</pre>
+
 '''
 
 import requests

