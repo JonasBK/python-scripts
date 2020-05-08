@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # Example:
-# python3 generate-toggled-wordlist.py -i "CONGRAT0905"
+# python3 generate_toggled_wordlist.py "CONGRAT0905"
 # congrat0905
 # congraT0905
 # congrAt0905
